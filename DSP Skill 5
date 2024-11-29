@@ -1,0 +1,133 @@
+clc;
+clear all;
+close all;
+%enter the numerator and dinominator coeff. in square brackets
+num=input(&#39;num coeff=&#39;);
+den=input(&#39;den coeff=&#39;);
+H=filt(num,den);
+z=zero(H);
+disp(&#39;zero are at&#39;);
+disp(z);
+[r p k]=residuez(num,den);
+disp(&#39;poles are at&#39;);
+disp(p);
+zplane(num,den);
+title(&#39;pole zero plot of LTI system in Z plane&#39;);
+output
+
+Flowchart
+(b) Z Transform
+1. Take x(n) input signal
+2. Calculate its Z transform
+3. Display x(Z)
+4. Simplify it if required
+% Z trnasform of given sequences
+clc;
+clear all;
+close all;
+syms a n;
+% Z trnasform of xn=1^n
+xn=1^n;
+Xz=ztrans(xn);
+disp(&#39;x(n)=&#39;);
+pretty(xn);
+disp(&#39;X(z)=&#39;);
+pretty(Xz);
+% Z trnasform of xn=a^n
+xn=a^n;
+Xz=ztrans(xn);
+disp(&#39;x(n)=&#39;);
+pretty(xn);
+
+disp(&#39;X(z)=&#39;);
+pretty(Xz);
+disp(&#39;X(z)=&#39;);
+pretty(simplify(Xz));
+Output:
+
+Flowchart
+(c) Inverse Z Transform
+1. Take x(n) as input signl
+2. Find its Z transform
+3. Display x(n0 and X(z)
+4. Calculate its inverse Z transform
+5. Display x(n)
+6. Simplify it if required
+% Invert Z transform of x(n)=(1/2)^n+ (-1/3)^n)
+clc;
+clear all;
+close all;
+syms n;
+
+xn=(1/2)^n+ (-1/3)^n;
+Xz=ztrans(xn);
+disp(&#39;x(n)=&#39;);
+pretty(xn);
+disp(&#39;X(z)=&#39;);
+pretty(Xz);
+% inverse Z trnasform
+disp(&#39;X(z)=&#39;);
+[rXz,how]=simple(Xz);
+disp(&#39;X(z)=&#39;);
+pretty(simplify(Xz));
+
+B) solve difference equation and find system response (using C)
+PROGRAM FOR DIFFERENCE EQUATION:-
+#include&lt;stdio.h&gt;
+#include&lt;conio.h&gt;
+
+#include&lt;math.h&gt;
+#include&lt;stdlib.h&gt;
+void main()
+{
+clrscr();
+printf(&quot;\tIMPLEMENTATION OF GENERAL DIFFERENCE EQN. BASED ON ARRAY MAPPING\n\n&quot;);
+int a[10],b[10],sumc,sumd;
+int x[10],y[10],N,M,L,k,n;
+printf(&quot;\nenter the no. of coeff. a&quot;);
+scanf(&quot;\n%d&quot;,&amp;N);
+printf(&quot;\nenter the coeff.&quot;);
+for(k=1;k&lt;=N;k++)
+scanf(&quot;%d&quot;,&amp;a[k]);
+printf(&quot;\nenter the no. of coeff. b&quot;);
+scanf(&quot;\n%d&quot;,&amp;M);
+printf(&quot;\nenter the coeff.&quot;);
+for(k=0;k&lt;M;k++)
+scanf(&quot;%d&quot;,&amp;b[k]);
+printf(&quot;\nenter the no. of samples&quot;);
+scanf(&quot;%d&quot;,&amp;L);
+printf(&quot;\nenter the samples&quot;);
+for(k=0;k&lt;L;k++)
+scanf(&quot;%d&quot;,&amp;x[k]);
+for(k=0;k&lt;L;k++)
+
+printf(&quot;\n%d&quot;,x[k]);
+printf(&quot;\noutput sequence is:&quot;);
+for(n=0;n&lt;L;n++)
+{
+sumc=0;
+sumd=0;
+for(k=1;(k&lt;=n)&amp;&amp;(k&lt;=N);k++)
+{ sumc+=a[k]*y[n-k]; }
+for(k=0;(k&lt;=n)&amp;&amp;(k&lt;M);k++)
+{ sumd+=b[k]*x[n-k]; }
+y[n]=-sumc+sumd;
+printf(&quot;\ny[%d]=%d&quot;,n,y[n]);
+}
+getch();
+}
+OUTPUT:-
+
+IMPLEMENTATION OF GENERAL DIFFERENCE EQN. BASED ON ARRAY MAPPING
+enter the no. of coeff. a2
+enter the coeff.2 1
+enter the no. of coeff. b2
+enter the coeff.1 1
+enter the no. of samples2
+enter the samples1 1
+
+1
+1
+output sequence is:
+y[0]=1
+y[1]=0
