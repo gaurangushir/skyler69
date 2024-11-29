@@ -1,0 +1,19 @@
+%stability test
+clc;
+clear all;
+close all;
+num=input(&#39;enter the numerator coefficients of the filter&#39;);
+den=input(&#39;enter the denominator coefficients of the filter&#39;);
+H=filt(num,den);
+z=zero(H);
+disp(&#39;zeros are at &#39;);
+disp(z);
+[r p k]=residuez(num,den);
+disp(&#39;poles are at &#39;);
+disp(p);
+zplane(num,den);
+title(&#39;pole sero map of LTI system in Z plane&#39;);
+if (p&lt;=1)
+disp(&#39;stable system&#39;);
+else
+disp(&#39;Non-stable system&#39;)
