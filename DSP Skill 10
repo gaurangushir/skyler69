@@ -1,0 +1,67 @@
+USING INBUILT FUNCTION
+n = 0:6;
+x = [4 6 2 1 7 4 8]; % function is given
+a = fft(x);
+mag = abs(a);
+pha = angle(a);
+subplot(2,1,1);
+plot(mag);
+grid on
+title(&#39;Magnitude Response&#39;);
+subplot(2,1,2);
+plot(pha);
+grid on
+title(&#39;phase Response&#39;);
+OUTPUT:
+
+N-POINT FFT WITHOUT USING INBUILT FUNCTION OF USER DEFINED FUNCTION
+clear all;
+close all;
+clc;
+x=input(&#39;Enter the sequence x[n]= &#39;);
+N=input(&#39;Enter the value N point= &#39;);
+L=length(x);
+x_n=[x,zeros(1,N-L)];
+for i=1:N
+for j=1:N
+temp=-2*pi*(i-1)*(j-1)/N;
+DFT_mat(i,j)=exp(complex(0,temp));
+end
+end
+X_k=DFT_mat*x_n&#39;;
+disp(&#39;N point DFT is X[k] = &#39;);
+disp(X_k);
+mag=abs(X_k);
+phase=angle(X_k)*180/pi;
+subplot(2,1,1);
+stem(mag);
+xlabel(&#39;frequency index k&#39;);
+ylabel(&#39;Magnitude of X[k]&#39;);
+axis([0 N+1 -2 max(mag)+2]);
+subplot(2,1,2);
+stem(phase);
+xlabel(&#39;frequency index k&#39;);
+ylabel(&#39;Phase of X[k]&#39;);
+axis([0 N+1 -180 180]);
+Output:
+
+For user defined sequence :
+clc;
+clear all;
+close all;
+tic;
+x=input(&#39;enter the sequence&#39;);
+n=input(&#39;enter the length of fft&#39;); %compute fft
+disp(&#39;fourier transformed signal&#39;);
+X=fft(x,n)
+subplot(1,2,1);stem(x); title(&#39;i/p signal&#39;);
+xlabel(&#39;n ---&gt;&#39;);
+ylabel(&#39;x(n) --&gt;&#39;);grid;
+subplot(1,2,2);stem(X);
+title(&#39;fft of i/p x(n) is:&#39;);
+xlabel(&#39;Real axis ---&gt;&#39;);
+ylabel(&#39;Imaginary axis --&gt;&#39;);grid;
+OUTPUT:-
+enter the sequence[1 .25 .3 4]
+enter the length of fft4
+fourier transformed signal
