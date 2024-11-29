@@ -1,0 +1,67 @@
+clc;
+clear all;
+close all;
+n=1000;
+fp=300;
+fs=1000;
+fn=2*fp/fs;
+%recatlgular window
+window= rectwin(n+1);
+b=fir1(n,fn,&#39;low&#39;, window);
+[h,w]=freqz(b,1,128);
+figure (1);
+subplot(411);
+plot(w/pi,abs(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;gain&#39;);
+title(&#39;magnitude responce of LPF-reactangular window&#39;);
+subplot(412);
+plot(w/pi,angle(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;angle&#39;);
+title(&#39;phase responce of LPF-reactangular window&#39;);
+%hamming window
+window= hamming(n+1);
+b=fir1(n,fn,&#39;low&#39;, window);
+[h,w]=freqz(b,1,128);
+subplot(413);
+plot(w/pi,abs(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;gain&#39;);
+title(&#39;magnitude responce of LPF-Hamming window&#39;);
+
+subplot(414);
+plot(w/pi,angle(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;angle&#39;);
+title(&#39;phase responce of LPF-Hamming window&#39;);
+%hanning window
+window= hanning(n+1);
+b=fir1(n,fn,&#39;low&#39;, window);
+[h,w]=freqz(b,1,128);
+figure (2);
+subplot(411);
+plot(w/pi,abs(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;gain&#39;);
+title(&#39;magnitude responce of LPF-Hanning window&#39;);
+subplot(412);
+plot(w/pi,angle(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;angle&#39;);
+title(&#39;phase responce of LPF-Hanning window&#39;);
+%triangular window
+window= triang(n+1);
+b=fir1(n,fn,&#39;low&#39;, window);
+[h,w]=freqz(b,1,128);
+subplot(413);
+plot(w/pi,abs(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;gain&#39;);
+title(&#39;magnitude responce of LPF-Traingular window&#39;);
+subplot(414);
+plot(w/pi,angle(h));
+xlabel(&#39;normalized frequency&#39;);
+ylabel(&#39;angle&#39;);
+title(&#39;phase responce of LPF-Traingular window&#39;);
+OUTPUT:
