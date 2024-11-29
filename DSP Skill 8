@@ -1,0 +1,19 @@
+%Design Butterworth filter using Bilinear transformation
+%method for LPF and write a program
+%to draw the frequency response of the filter.
+clc;
+close all;
+clear all;
+wp=input(&#39;passband edge frequency in rad/sec=&#39;);
+ws=input(&#39;stopband edge frequency in rad/sec=&#39;);
+Ap=input(&#39;passband ripple in db=&#39;);
+As=input(&#39;stopband ripple in db=&#39;);
+fs=input(&#39;sampling frequency=&#39;);
+[N wn]=buttord(wp,ws,Ap,As,&#39;s&#39;);
+disp(&#39;order of filter is N=&#39;);
+disp(N)
+[num, den]=butter(N,wn,&#39;s&#39;)
+[b, a]=bilinear(num,den,fs)
+freqz(b,a,512,fs)
+
+Output:
