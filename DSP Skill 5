@@ -1,0 +1,40 @@
+clc;
+close all;
+clear all;
+x=input(&#39;enter the first sequence(length should be 4 or less than
+4),x=&#39;);
+h=input(&#39;enter the 2nd sequence (length should be 4 or less than
+4),h=&#39;);
+N1=length(x);
+N2=length(h);
+N=input(&#39;enter the no. of DFT points(4 or 8),N=&#39;);
+x=[x,zeros(1,N-N1)];
+h=[h,zeros(1,N-N2)];
+y=zeros(1,N);
+for m=0:1:N-1
+for n=0:1:N-1
+k1=(m-n);
+k=mod(k1,N);
+y(m+1)=y(m+1)+x(n+1)*h(k+1);
+end
+end
+%plot sequences
+
+n1=0:1:N-1;
+subplot(311);
+stem(n1,x);
+title(&#39;first sequence,x&#39;);
+xlabel(&#39;samples&#39;);
+ylabel(&#39;magnitude&#39;);
+subplot(312); stem(n1,h);
+title(&#39;second sequence,h&#39;);
+xlabel(&#39;samples&#39;); ylabel(&#39;magnitude&#39;);
+subplot(313); stem(n1,y);
+disp(&#39;output sequence,y=&#39;);
+disp(y);
+title(&#39;circular convolution,y&#39;);
+xlabel(&#39;samples&#39;);ylabel(&#39;magnitude&#39;);
+
+Output for N=4
+
+Output for N=8
